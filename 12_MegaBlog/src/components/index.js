@@ -3,6 +3,7 @@ import Container from './container/Container'
 import Footer from "./Footer/Footer";  
 import Logo from "./Logo"; 
 import LogoutBtn from "./Header/LogoutBtn"; 
+import RTE from "./RTE";
 
 
 export {
@@ -10,5 +11,6 @@ export {
     Footer,
     Container,
     Logo,
-    LogoutBtn
+    LogoutBtn,
+    RTE
 }
