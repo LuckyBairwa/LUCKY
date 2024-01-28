@@ -4,14 +4,14 @@ import { Client, ID, Databases, Storage, Query } from "appwrite";
 export class Service{
     client = new Client();
     databases;
-    images;
+    bucket;
     
     constructor(){
         this.client
         .setEndpoint(conf.appwriteUrl)
         .setProject(conf.appwriteProjectId);
         this.databases = new Databases(this.client);
-        this.images = new Storage(this.client);
+        this.bucket = new Storage(this.client);
     }
 
     
@@ -101,7 +101,7 @@ export class Service{
 
     async uploadFile(file){
         try {
-            return await this.images.createFile(
+            return await this.bucket.createFile(
                 conf.appwriteBucketId,
                 ID.unique(),
                 file,
@@ -114,7 +114,7 @@ export class Service{
 
     async deleteFile(fileId){
         try {
-            await this.images.deleteFile(
+            await this.bucket.deleteFile(
                 conf.appwriteBucketId,
                 fileId,
             )
@@ -127,7 +127,7 @@ export class Service{
 
     getFilePreview(fileId){
         console.log(fileId);
-        return this.images.getFilePreview(
+        return this.bucket.getFilePreview(
             conf.appwriteBucketId,
             fileId,
         )
@@ -136,5 +136,4 @@ export class Service{
 
 
 const service = new Service()
-console.log(service.client);
 export default service
